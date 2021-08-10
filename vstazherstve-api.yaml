@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: вСтажерстве OpenApi
+  version: 1.0.0
+paths:
+  /register:
+    post:
+      summary: Регистрация нового пользователя в системе
+      operationId: register
+      requestBody:
+        description: Пользователь которого требуется добавить в систему
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        400:
+          description: Invalid input
+          content: {}
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+      required:
+        - username
+        - email
+        - password
